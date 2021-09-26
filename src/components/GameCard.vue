@@ -1,6 +1,6 @@
 <template>
   <a :href="gameList[gameId].url">
-    <q-card class="mycard bg-black">
+    <q-card class="mycard">
       <!-- <p>{{gameList[gameId].art}}</p> yeah man this works fine -->
       <q-img :src="gameList[gameId].art">
       </q-img>
@@ -17,6 +17,7 @@
   height: 17vw;
   display: flex;
   flex-grow: 1;
+  background-color: rgba($color: #000000, $alpha: 0.0);
 }
 .title {
   color: white;
