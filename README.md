@@ -1,4 +1,4 @@
-# io Game Launcher (browsergamelauncher)
+# io Game Launcher
 
 Keep track of your favorite browser games!
 
