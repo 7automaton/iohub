@@ -18,6 +18,7 @@
     "@babel/eslint-parser": "^7.13.14",
     "@quasar/app": "^3.0.0",
     "electron": "^15.0.0",
+    "electron-packager": "^15.2.0",
     "eslint": "^7.14.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
