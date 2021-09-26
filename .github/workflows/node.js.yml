@@ -1,5 +1,4 @@
-# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# Some code has been stolen from @enbox/enbox which I helped start lol
 
 name: Electron/PWA CI
 
@@ -13,7 +12,7 @@ jobs:
   build-desktop:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]      
         node-version: [14.17.6]
@@ -27,7 +26,28 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+    - name: Set OS to Windows
+      if: runner.os == 'Windows'
+      run: echo ::set-env name=OS::windows
+      # Required since default shell on Windows is pwsh
+      shell: bash
+    - name: Set OS to macOS (and set release flag)
+      if: runner.os == 'macOS'
+      run: |
+        echo ::set-env name=OS::macos
+        echo ::set-env name=FLAGS::--release
+    - name: Set OS to Linux
+      if: runner.os == 'Linux'
+      run: echo ::set-env name=OS::linux
     - run: rm -rf node_modules && yarn install --frozen-lockfile
     - name: Install Quasar CLI
       run: yarn global add @quasar/cli
     - run: quasar build -m electron
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: eltr-bin-${{ env.OS }}
+        path: dist\electron\io*
+        # The desired behavior if no files are found using the provided path.
+        if-no-files-found: warn
+    
