@@ -2,6 +2,8 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 
+// const Menu = require('menu');
+
 /*
 try {
   if (process.platform === 'win32' && nativeTheme.shouldUseDarkColors === true) {
@@ -26,6 +28,8 @@ function createWindow() {
       preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD),
     },
   });
+
+  mainWindow.setMenu(null);
 
   mainWindow.loadURL(process.env.APP_URL);
 

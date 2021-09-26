@@ -122,9 +122,6 @@ export default defineComponent({
     <q-header class="bg-primary text-white" height-hint="98">
       <q-toolbar>
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
           io Game Launcher
         </q-toolbar-title>
       </q-toolbar>
@@ -139,7 +136,7 @@ export default defineComponent({
       <router-view />
     </q-page-container>
 
-    <q-footer class="bg-grey-8 text-white">
+    <!-- q-footer class="bg-grey-8 text-white">
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
@@ -148,7 +145,7 @@ export default defineComponent({
           <div>io Game Launcher</div>
         </q-toolbar-title>
       </q-toolbar>
-    </q-footer>
+    </q-footer -->
 
   </q-layout>
 </template>
