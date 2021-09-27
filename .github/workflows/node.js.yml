@@ -33,11 +33,10 @@ jobs:
       shell: bash
     - name: Set OS to macOS (and set release flag)
       if: runner.os == 'macOS'
-      run: |
-        echo "opsys=macos" >> $GITHUB_ENV
+      run: echo "opsys=macos" >> $GITHUB_ENV
     - name: Set OS to Linux
       if: runner.os == 'Linux'
-      run: "opsys=linux" >> $GITHUB_ENV
+      run: echo "opsys=linux" >> $GITHUB_ENV
     - run: rm -rf node_modules && yarn install --frozen-lockfile
     - name: Install Quasar CLI
       run: yarn global add @quasar/cli
