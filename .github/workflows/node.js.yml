@@ -28,17 +28,16 @@ jobs:
         cache: 'yarn'
     - name: Set OS to Windows
       if: runner.os == 'Windows'
-      run: echo ::set-env name=OS::windows
+      run: echo "opsys=windows" >> $GITHUB_ENV
       # Required since default shell on Windows is pwsh
       shell: bash
     - name: Set OS to macOS (and set release flag)
       if: runner.os == 'macOS'
       run: |
-        echo ::set-env name=OS::macos
-        echo ::set-env name=FLAGS::--release
+        echo "opsys=macos" >> $GITHUB_ENV
     - name: Set OS to Linux
       if: runner.os == 'Linux'
-      run: echo ::set-env name=OS::linux
+      run: "opsys=linux" >> $GITHUB_ENV
     - run: rm -rf node_modules && yarn install --frozen-lockfile
     - name: Install Quasar CLI
       run: yarn global add @quasar/cli
@@ -46,7 +45,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
-        name: eltr-bin-${{ env.OS }}
+        name: eltr-bin-${{ env.opsys }}
         path: dist\electron\io*
         # The desired behavior if no files are found using the provided path.
         if-no-files-found: warn
